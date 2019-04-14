@@ -11,11 +11,6 @@ MatrixType = TypeVar("M", bound="Matrix")
 VectorType = TypeVar("V", bound="Vector")
 
 
-class IllegalOperand(Exception):
-    def __init__(self, msg):
-        super(IllegalOperand, self).__init__(msg)
-
-
 class MatrixSizeError(Exception):
     def __init__(self, a, b):
         super(MatrixSizeError, self).__init__(self.msg.format(
@@ -34,12 +29,6 @@ class MatrixSubtractionSizeError(MatrixSizeError):
 
 class MatrixAdditionSizeError(MatrixSizeError):
     msg = "tried to add a {} matrix from a {} matrix"
-
-
-class MatrixUnrecognizedSliceError(Exception):
-    def __init__(self, op):
-        super(MatrixUnrecognizedSliceError, self).__init__(
-                "unrecognized slice")
 
 
 class Matrix(object):
@@ -234,7 +223,7 @@ class Rotation(object):
     def euler_angles(cls, roll, pitch, yaw):
         pass
 
-    def __mul__(self, other):
+    def __mul__(self, other: Union[RotationType, TranslationType]):
 
         if isinstance(other, Rotation):
             r = Rotation()
@@ -245,8 +234,6 @@ class Rotation(object):
             t = Translation()
             t._translation = self.matrix * other.matrix
             return t
-
-        raise "asdfasdf"
 
     def __imul__(self, other: RotationType):
 
@@ -321,16 +308,12 @@ class Translation(object):
 
     def __mul__(self, value: Number):
 
-        assert(isinstance(value, Number))
-
         return Translation(
                 value * self.x,
                 value * self.y,
                 value * self.z)
 
     def __rmul__(self, value: Number):
-
-        assert(isinstance(value, Number))
 
         return Translation(
                 value * self.x,
@@ -366,10 +349,6 @@ class Transform(object):
         return self._translation
 
     def __mul__(self, other : TransformType):
-
-        if not isinstance(other, Transform):
-            msg = "a Transform can only be multiplied by another transform"
-            raise IllegalOperand(msg)
 
         return Transform(
                 self.rotation * other.rotation,
