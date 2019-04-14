@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import numpy as np
 
 from numbers import Number
@@ -383,18 +381,3 @@ class Transform(object):
         translation = rotation * (-self.translation)
 
         return Transform(rotation, translation)
-
-
-def main():
-
-    D = Translation()
-    R = Rotation.axis_angle((0, 2, 2), np.pi / 2)
-
-    T = Transform(R, D)
-    x = Transform(Rotation(), Translation(1, 0, 0))
-
-    print(T * x)
-
-
-if __name__ == "__main__":
-    main()
