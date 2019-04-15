@@ -116,7 +116,7 @@ class Matrix(object):
 
             return m
 
-    def __rmul__(self, other : Number):
+    def __rmul__(self, other: Number):
 
         m = Matrix(self.rows, self.cols)
         m._data = other * np.array(self._data)
