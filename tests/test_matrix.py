@@ -1,4 +1,4 @@
-from rigidbody import Matrix
+from rigidbody import (Matrix, approx)
 
 def test_matrix_equality():
 
@@ -88,3 +88,20 @@ def test_matrix_multiplication():
     BA[2, :] = [7 ,9, 8]
 
     assert(B * A == BA)
+
+
+def test_matrix_approx():
+
+    A = Matrix(3, 3)
+    B = Matrix(3, 3)
+
+    A[0, :] = B[0, :] = [1, 2, 3]
+    A[1, :] = B[1, :] = [4, 5, 6]
+    A[2, :] = B[2, :] = [7, 8 ,9]
+
+
+    assert(approx(A, B, tol=0.001))
+
+    A[0, 0] += 0.002
+
+    assert(not approx(A, B, tol=0.001))

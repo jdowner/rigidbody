@@ -172,3 +172,8 @@ class Vector(Matrix):
         assert(self.norm() != 0)
 
         self._data /= self.norm()
+
+
+def approx(A, B, tol=0.001):
+
+    return np.all(np.fabs(A._data - B._data) < tol)
