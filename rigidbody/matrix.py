@@ -118,6 +118,13 @@ class Matrix(object):
 
         return m
 
+    def __truediv__(self, value: Number):
+
+        m = Matrix(self.rows, self.cols)
+        m._data = self._data / value
+
+        return m
+
     def __eq__(self, other: MatrixType):
 
         return np.all(self._data == other._data)
