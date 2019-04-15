@@ -123,6 +123,10 @@ class Matrix(object):
 
         return m
 
+    def __eq__(self, other: MatrixType):
+
+        return np.all(self._data == other._data)
+
     def __getitem__(self, range: tuple):
         return self._data.__getitem__(range)
 
