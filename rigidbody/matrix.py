@@ -150,8 +150,7 @@ class Matrix(object):
     def transposed(self):
 
         m = Matrix(self.cols, self.rows)
-        m._data = np.array(self._data)
-        m._data.transpose()
+        m._data = np.array(self._data).transpose()
 
         return m
 
