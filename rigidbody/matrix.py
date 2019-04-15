@@ -177,3 +177,18 @@ class Vector(Matrix):
 def approx(A, B, tol=0.001):
 
     return np.all(np.fabs(A._data - B._data) < tol)
+
+
+def svd(A: Matrix):
+
+    u, s, vh = np.linalg.svd(A._data, full_matrices=True)
+
+    U = Matrix(A.rows, A.rows)
+    S = Matrix(A.rows, A.cols)
+    V = Matrix(A.cols, A.cols)
+
+    U._data = u
+    S._data = np.diag(s)
+    V._data = vh.transpose()
+
+    return (U, S, V)

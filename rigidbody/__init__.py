@@ -1,2 +1,2 @@
-from .matrix import (Matrix, Vector, approx)
+from .matrix import (Matrix, Vector, svd, approx)
 from .transforms import (Rotation, Translation, Transform)

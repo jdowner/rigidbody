@@ -1,4 +1,4 @@
-from rigidbody import (Matrix, approx)
+from rigidbody import (Matrix, svd, approx)
 
 def test_matrix_equality():
 
@@ -105,3 +105,16 @@ def test_matrix_approx():
     A[0, 0] += 0.002
 
     assert(not approx(A, B, tol=0.001))
+
+
+def test_matrix_svd():
+
+    A = Matrix(3, 3)
+
+    A[0, :] = [1, 2, 3]
+    A[1, :] = [4, 5, 6]
+    A[2, :] = [7, 8 ,9]
+
+    U, S, V = svd(A)
+
+    assert(approx(U * S * V.transposed(), A))
