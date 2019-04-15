@@ -179,6 +179,11 @@ class Vector(Matrix):
 
         self._data /= self.norm()
 
+    @classmethod
+    def e(cls, rows, index):
+
+        return cls(*[0 if i != index else 1 for i in range(rows)])
+
 
 def approx(A, B, tol=0.001):
 
