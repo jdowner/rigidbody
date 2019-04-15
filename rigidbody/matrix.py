@@ -133,6 +133,16 @@ class Matrix(object):
         return self._data.__getitem__(range)
 
     def __setitem__(self, range: tuple, value):
+
+        if isinstance(value, Matrix):
+
+            data = value._data
+
+            if min(data.shape) == 1:
+                data = data.flatten()
+
+            return self._data.__setitem__(range, data)
+
         return self._data.__setitem__(range, value)
 
     @property
