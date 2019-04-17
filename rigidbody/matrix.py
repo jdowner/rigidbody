@@ -125,6 +125,13 @@ class Matrix(object):
 
         return m
 
+    def __neg__(self):
+
+        m = Matrix(self.rows, self.cols)
+        m._data = -self._data
+
+        return m
+
     def __eq__(self, other: MatrixType):
 
         return np.all(self._data == other._data)
