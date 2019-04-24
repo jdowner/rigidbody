@@ -10,6 +10,7 @@ setuptools.setup(
         author='Joshua Downer',
         author_email='joshua.downer@gmail.com',
         url='http://github.com/jdowner/rigidbody',
+        packages=['rigidbody'],
         install_requires=[
             'numpy',
             ],
