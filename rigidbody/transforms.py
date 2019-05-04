@@ -50,7 +50,7 @@ class Rotation(object):
 
         I = Matrix.identity(3)
 
-        rot = I + s * K + (1 - c) * K * K
+        rot = I + (s + (1 - c) * K) * K
 
         return cls(rot)
 
