@@ -21,7 +21,7 @@ class Rotation(object):
         self._rotation = rotation
 
     @classmethod
-    def axis_angle(cls, axis : Union[tuple, Vector], angle : Number):
+    def axis_angle(cls, axis: Union[tuple, Vector], angle: Number):
 
         if isinstance(axis, (list, tuple)):
             assert(len(axis) == 3)
@@ -92,7 +92,10 @@ class Rotation(object):
 
 class Translation(object):
 
-    def __init__(self, x=0, y=0, z=0):
+    def __init__(self,
+            x: Optional[Number]=0,
+            y: Optional[Number]=0,
+            z: Optional[Number]=0):
 
         self._translation = Vector(x, y, z)
 
@@ -104,7 +107,7 @@ class Translation(object):
         return self._translation[0, 0]
 
     @x.setter
-    def x(self, value):
+    def x(self, value: Number):
         self._translation[0, 0] = value
 
     @property
@@ -112,7 +115,7 @@ class Translation(object):
         return self._translation[1, 0]
 
     @y.setter
-    def y(self, value):
+    def y(self, value: Number):
         self._translation[1, 0] = value
 
     @property
@@ -120,7 +123,7 @@ class Translation(object):
         return self._translation[2, 0]
 
     @z.setter
-    def z(self, value):
+    def z(self, value: Number):
         self._translation[2, 0] = value
 
     def __add__(self, other: TranslationType):

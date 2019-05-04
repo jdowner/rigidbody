@@ -28,14 +28,14 @@ class MatrixAdditionSizeError(MatrixSizeError):
 
 class Matrix(object):
 
-    def __init__(self, rows, cols):
+    def __init__(self, rows: int, cols: int):
 
         self._rows = rows
         self._cols = cols
         self._data = np.zeros((rows, cols))
 
     @classmethod
-    def zero(cls, rows, cols=1):
+    def zero(cls, rows: int, cols: Optional[int]=1):
         m = cls(rows, cols)
         m._data = np.zeros((rows, cols))
         return m
@@ -197,12 +197,12 @@ class Vector(Matrix):
         self._data /= self.norm()
 
     @classmethod
-    def e(cls, rows, index):
+    def e(cls, rows: int, index: int):
 
         return cls(*[0 if i != index else 1 for i in range(rows)])
 
 
-def approx(A, B, tol=0.001):
+def approx(A: Matrix, B: Matrix, tol: Optional[float]=0.001):
 
     return np.all(np.fabs(A._data - B._data) < tol)
 
