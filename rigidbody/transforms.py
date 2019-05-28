@@ -56,7 +56,8 @@ class Rotation(object):
 
     @classmethod
     def euler_angles(cls, roll, pitch, yaw):
-        pass
+
+        raise NotImplementedError()
 
     def __mul__(self, other: Union[RotationType, TranslationType]):
 
