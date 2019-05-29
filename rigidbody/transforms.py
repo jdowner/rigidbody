@@ -166,18 +166,14 @@ class Translation(object):
 
 class Transform(object):
 
-    def __init__(self, rotation: RotationType, translation: TranslationType):
+    def __init__(self, rotation: Optional[RotationType]=None,
+            translation: Optional[TranslationType]=None):
 
-        self._rotation = rotation
-        self._translation = translation
+        self._rotation = rotation or Rotation()
+        self._translation = translation or Translation()
 
     def __str__(self):
-        m = Matrix.identity(4, 4)
-
-        m[:3, :3] = self.rotation.matrix.data
-        m[:3, 3:4] = self.translation.matrix.data
-
-        return str(m)
+        return str(self.matrix)
 
     @property
     def rotation(self):
@@ -187,6 +183,14 @@ class Transform(object):
     def translation(self):
         return self._translation
 
+    @property
+    def matrix(self):
+        m = Matrix.identity(4, 4)
+
+        m[:3, :3] = self.rotation.matrix.data
+        m[:3, 3:4] = self.translation.matrix.data
+
+        return m
     def __mul__(self, other : TransformType):
 
         return Transform(
