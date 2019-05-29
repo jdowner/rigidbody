@@ -207,6 +207,16 @@ def approx(A: Matrix, B: Matrix, tol: Optional[float]=0.001):
     return np.all(np.fabs(A._data - B._data) < tol)
 
 
+def dot(u: Vector, v: Vector):
+
+    return (u.transposed() * v)[0, 0]
+
+
+def cross(u: Vector, v: Vector):
+
+    return Vector(*list(np.cross(u._data.flatten(), v._data.flatten())))
+
+
 def svd(A: Matrix):
 
     u, s, vh = np.linalg.svd(A._data, full_matrices=True)
