@@ -4,7 +4,7 @@ import setuptools
 
 
 setuptools.setup(
-        name='rigidbody',
+        name='python-rigidbody',
         version='0.1',
         license='MIT',
         author='Joshua Downer',
