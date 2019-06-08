@@ -1,6 +1,9 @@
 build:
 	python setup.py build
 
+test:
+	tox
+
 sdist:
 	python setup.py sdist
 
